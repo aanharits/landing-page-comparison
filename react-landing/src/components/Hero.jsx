@@ -1,0 +1,58 @@
+import { HERO_DATA } from '../data/hero.js';
+
+function Hero() {
+  return (
+    <section id="hero" className="pt-32 pb-20 lg:pt-40 lg:pb-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left — Typography */}
+          <div className="animate-on-scroll fade-right">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sagedark mb-6">
+              {HERO_DATA.subtitle}
+            </p>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-onyx mb-8">
+              {HERO_DATA.title}
+            </h1>
+            <p className="text-lg text-onyx/70 leading-relaxed max-w-lg mb-10">
+              {HERO_DATA.description}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#services"
+                className="px-8 py-4 bg-onyx text-offwhite text-sm font-semibold rounded-full hover:bg-onyx/80 transition-colors duration-300"
+              >
+                {HERO_DATA.cta}
+              </a>
+              <a
+                href="#gallery"
+                className="px-8 py-4 border-2 border-onyx/15 text-onyx text-sm font-semibold rounded-full hover:border-onyx/40 transition-colors duration-300"
+              >
+                View Gallery
+              </a>
+            </div>
+          </div>
+
+          {/* Right — Hero Image */}
+          <div className="animate-on-scroll fade-left relative" style={{ animationDelay: "200ms" }} >
+            <div className="rounded-4xl overflow-hidden">
+              <img
+                src={HERO_DATA.image}
+                alt="Premium Pet Care"
+                className="w-full h-[500px] lg:h-[600px] object-cover"
+                width="640"
+                height="600"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+            {/* Decorative element */}
+            <div className="absolute -z-10 top-8 right-8 w-full h-full rounded-4xl bg-sage/15"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;
