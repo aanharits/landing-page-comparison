@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
-import Stats from './components/Stats.jsx';
 import Services from './components/Services.jsx';
 import Gallery from './components/Gallery.jsx';
+import Video from './components/Video.jsx';
+import Team from './components/Team.jsx';
 import Testimonials from './components/Testimonials.jsx';
+import Stats from './components/Stats.jsx';
 import VirtualTour from './components/VirtualTour.jsx';
 import LocationMap from './components/LocationMap.jsx';
 import FAQ from './components/FAQ.jsx';
@@ -29,20 +31,22 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-offwhite">
+    <>
       <Navbar />
       <main>
         <Hero />
-        <Stats />
         <Services />
         <Gallery />
+        <Video />
+        <Team />
         <Testimonials />
+        <Stats />
         <VirtualTour />
         <LocationMap />
         <FAQ />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

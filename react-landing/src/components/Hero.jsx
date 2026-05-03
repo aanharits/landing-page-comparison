@@ -2,53 +2,31 @@ import { HERO_DATA } from '../data/hero.js';
 
 function Hero() {
   return (
-    <section id="hero" className="pt-32 pb-20 lg:pt-40 lg:pb-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left — Typography */}
-          <div className="animate-on-scroll fade-right">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sagedark mb-6">
-              {HERO_DATA.subtitle}
-            </p>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-onyx mb-8">
-              {HERO_DATA.title}
-            </h1>
-            <p className="text-lg text-onyx/70 leading-relaxed max-w-lg mb-10">
-              {HERO_DATA.description}
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#services"
-                className="px-8 py-4 bg-onyx text-offwhite text-sm font-semibold rounded-full hover:bg-onyx/80 transition-colors duration-300"
-              >
-                {HERO_DATA.cta}
-              </a>
-              <a
-                href="#gallery"
-                className="px-8 py-4 border-2 border-onyx/15 text-onyx text-sm font-semibold rounded-full hover:border-onyx/40 transition-colors duration-300"
-              >
-                View Gallery
-              </a>
-            </div>
-          </div>
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={HERO_DATA.image} alt="Happy pets at PawCare clinic" className="w-full h-full object-cover" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async" />
+        <div className="absolute inset-0 bg-gradient-to-r from-text/80 via-text/60 to-transparent"></div>
+      </div>
 
-          {/* Right — Hero Image */}
-          <div className="animate-on-scroll fade-left relative" style={{ animationDelay: "200ms" }} >
-            <div className="rounded-4xl overflow-hidden">
-              <img
-                src={HERO_DATA.image}
-                alt="Premium Pet Care"
-                className="w-full h-[500px] lg:h-[600px] object-cover"
-                width="640"
-                height="600"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-              />
-            </div>
-            {/* Decorative element */}
-            <div className="absolute -z-10 top-8 right-8 w-full h-full rounded-4xl bg-sage/15"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40 w-full">
+        <div className="max-w-2xl">
+          <p className="hero-animate text-sm font-accent font-semibold uppercase tracking-[0.3em] text-secondary mb-6">{HERO_DATA.subtitle}</p>
+          <h1 className="hero-animate-delay-1 text-5xl sm:text-6xl lg:text-7xl font-heading font-bold leading-[1.1] text-white mb-8">{HERO_DATA.title}</h1>
+          <p className="hero-animate-delay-2 text-lg text-white/70 leading-relaxed max-w-lg mb-10 font-body">{HERO_DATA.description}</p>
+
+          <div className="hero-animate-delay-3 flex flex-wrap gap-4">
+            <a href="#contact" className="cta-pulse px-8 py-4 bg-primary text-white text-sm font-semibold rounded-full hover:bg-primary-dark transition-colors duration-300">{HERO_DATA.cta}</a>
+            <a href="#gallery" className="px-8 py-4 border-2 border-white/30 text-white text-sm font-semibold rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300">{HERO_DATA.ctaSecondary}</a>
           </div>
+        </div>
+
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {HERO_DATA.counters.map((counter, index) => (
+            <div key={counter.label} className="hero-animate-delay-3 text-center md:text-left" style={{ animationDelay: `${0.6 + index * 0.15}s` }}>
+              <p className="text-3xl lg:text-4xl font-heading font-bold text-white mb-1">{counter.value}</p>
+              <p className="text-sm text-white/50 font-body">{counter.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

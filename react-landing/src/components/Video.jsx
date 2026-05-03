@@ -1,0 +1,38 @@
+import { useState } from 'react';
+
+function Video() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <section id="video" className="py-24 lg:py-32 bg-primary-dark">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-12 animate-on-scroll fade-up">
+          <p className="text-sm font-accent font-semibold uppercase tracking-[0.3em] text-secondary mb-4">WATCH & DISCOVER</p>
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-6">Tur Virtual Fasilitas Kami</h2>
+          <p className="text-white/60 max-w-2xl mx-auto">Take a peek inside our world-class facility and see why thousands of pet owners trust PawCare with their beloved companions.</p>
+        </div>
+
+        <div className="animate-on-scroll fade-up max-w-4xl mx-auto">
+          <div className="relative w-full rounded-3xl overflow-hidden bg-text/50 shadow-2xl" style={{ paddingBottom: '56.25%' }}>
+            {!playing && (
+              <button onClick={() => setPlaying(true)} className="absolute inset-0 w-full h-full cursor-pointer group z-10">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=80" alt="PawCare Facility Tour" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+                <div className="absolute inset-0 bg-text/40 group-hover:bg-text/30 transition-colors duration-300"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="video-play-btn w-24 h-24 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2D6A4F" className="w-10 h-10 ml-1"><polygon points="5,3 19,12 5,21" /></svg>
+                  </div>
+                </div>
+              </button>
+            )}
+            {playing && (
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="PawCare Virtual Tour" className="absolute inset-0 w-full h-full" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Video;

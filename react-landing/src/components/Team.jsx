@@ -1,0 +1,44 @@
+import { TEAM_MEMBERS } from '../data/team.js';
+
+function Team() {
+  return (
+    <section id="team" className="py-24 lg:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-16 animate-on-scroll fade-up">
+          <p className="text-sm font-accent font-semibold uppercase tracking-[0.3em] text-primary mb-4">MEET THE EXPERTS</p>
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-text mb-6">Our Team</h2>
+          <p className="text-text-light max-w-2xl mx-auto">Our dedicated team of veterinary professionals brings decades of combined experience and a genuine passion for animal care.</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {TEAM_MEMBERS.map((member, index) => (
+            <div key={member.name} className="team-card bg-white rounded-3xl overflow-hidden border border-gray-100 animate-on-scroll fade-up" style={{ animationDelay: `${index * 100}ms` }}>
+              <div className="h-72 overflow-hidden">
+                <img src={member.photo} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" width="400" height="288" loading="lazy" decoding="async" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-heading font-bold text-text mb-1">{member.name}</h3>
+                <p className="text-primary font-semibold text-sm mb-2">{member.role}</p>
+                <p className="text-text-light text-sm mb-1"><span className="font-medium">Specialization:</span> {member.specialization}</p>
+                <p className="text-text-light text-sm mb-4"><span className="font-medium">Experience:</span> {member.experience}</p>
+                <div className="flex gap-3">
+                  <a href={member.social.linkedin} className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300" aria-label={`${member.name} LinkedIn`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                  </a>
+                  <a href={member.social.twitter} className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300" aria-label={`${member.name} Twitter`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+                  </a>
+                  <a href={`mailto:${member.social.email}`} className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300" aria-label={`Email ${member.name}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Team;

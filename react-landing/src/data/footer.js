@@ -8,11 +8,20 @@ export const FOOTER_DATA = {
     { name: 'Instagram', href: '#' },
     { name: 'Facebook', href: '#' },
     { name: 'Twitter', href: '#' },
+    { name: 'YouTube', href: '#' },
   ],
   quickLinks: [
     { label: 'Services', href: '#services' },
     { label: 'Gallery', href: '#gallery' },
+    { label: 'Our Team', href: '#team' },
     { label: 'Testimonials', href: '#testimonials' },
     { label: 'FAQ', href: '#faq' },
+  ],
+  services: [
+    { label: 'General Check-Up', href: '#services' },
+    { label: 'Vaccination', href: '#services' },
+    { label: 'Surgery', href: '#services' },
+    { label: 'Dental Care', href: '#services' },
+    { label: 'Emergency Care', href: '#services' },
   ],
 };

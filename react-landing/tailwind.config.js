@@ -4,14 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        offwhite: '#FAF9F6',
-        onyx: '#1A1A1A',
-        sage: '#829281',
-        sagedark: '#5C6B5B',
-        clay: '#B06C4D',
+        primary: '#2D6A4F',
+        'primary-dark': '#1B4332',
+        secondary: '#74C69D',
+        'secondary-light': '#B7E4C7',
+        accent: '#F4A261',
+        'accent-dark': '#E76F51',
+        background: '#FAFAFA',
+        text: '#1A1A2E',
+        'text-light': '#4A4A5A',
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        heading: ['"Playfair Display"', 'Georgia', 'serif'],
+        body: ['"Inter"', 'system-ui', 'sans-serif'],
+        accent: ['"Poppins"', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         '4xl': '32px',
