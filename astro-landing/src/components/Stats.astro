@@ -1,0 +1,25 @@
+---
+import { STATS } from '../data/stats.js';
+---
+
+<section class="py-20 border-y border-onyx/5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      {
+        STATS.map((stat, index) => (
+          <div
+            class="text-center animate-on-scroll fade-up"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <p class="text-5xl lg:text-6xl font-extrabold text-onyx mb-2">
+              {stat.value}
+            </p>
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-onyx/60">
+              {stat.label}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

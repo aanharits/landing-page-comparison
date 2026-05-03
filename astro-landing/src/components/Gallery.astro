@@ -1,0 +1,92 @@
+---
+import { GALLERY_ITEMS } from '../data/gallery_items.js';
+import { GALLERY_FILTERS } from '../data/gallery_filters.js';
+---
+
+<section id="gallery" class="py-24 lg:py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-12 animate-on-scroll fade-up">
+      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-sagedark mb-4">
+        OUR FRIENDS
+      </p>
+      <h2 class="text-4xl lg:text-5xl font-extrabold text-onyx mb-8">
+        Pet Gallery
+      </h2>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap gap-3">
+        {GALLERY_FILTERS.map((filter) => (
+          <button
+            class={`gallery-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+              filter === 'All'
+                ? 'bg-onyx text-offwhite'
+                : 'bg-onyx/5 text-onyx/60 hover:bg-onyx/10'
+            }`}
+            data-filter={filter}
+          >
+            {filter}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {GALLERY_ITEMS.map((item, index) => (
+        <div
+          class="gallery-item group rounded-4xl overflow-hidden relative animate-on-scroll zoom-in"
+          data-category={item.category}
+          
+          style={`animation-delay: ${index * 80}ms`}
+        >
+          <img
+            src={item.src}
+            alt={item.name}
+            class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+            width="320"
+            height="288"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-onyx/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-white font-bold text-lg">{item.name}</p>
+              <p class="text-white/70 text-sm">{item.breed}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      // Update active button styles
+      filterButtons.forEach(b => {
+        b.classList.remove('bg-onyx', 'text-offwhite');
+        b.classList.add('bg-onyx/5', 'text-onyx/60', 'hover:bg-onyx/10');
+      });
+      btn.classList.add('bg-onyx', 'text-offwhite');
+      btn.classList.remove('bg-onyx/5', 'text-onyx/60', 'hover:bg-onyx/10');
+
+      // Filter gallery items
+      galleryItems.forEach(item => {
+        if (filter === 'All' || item.dataset.category === filter) {
+          item.style.display = '';
+          item.classList.remove('hidden-item');
+        } else {
+          item.style.display = 'none';
+          item.classList.add('hidden-item');
+        }
+      });
+    });
+  });
+</script>

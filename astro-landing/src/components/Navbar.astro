@@ -1,0 +1,114 @@
+---
+import { NAV_LINKS } from '../data/navigation.js';
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300 py-6">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="text-2xl font-extrabold tracking-tight text-onyx">
+      PawCare
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-10">
+      {NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm font-medium text-onyx/60 hover:text-onyx transition-colors duration-300 uppercase tracking-widest"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#services"
+        class="px-7 py-3 bg-onyx text-offwhite text-sm font-semibold rounded-full hover:bg-onyx/80 transition-colors duration-300"
+      >
+        Book Now
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Toggle menu"
+    >
+      <span id="hamburger-top" class="block w-6 h-0.5 bg-onyx transition-all duration-300"></span>
+      <span id="hamburger-mid" class="block w-6 h-0.5 bg-onyx transition-all duration-300"></span>
+      <span id="hamburger-bot" class="block w-6 h-0.5 bg-onyx transition-all duration-300"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0">
+    <div class="px-6 pb-6 pt-4 flex flex-col gap-4">
+      {NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link text-sm font-medium text-onyx/60 hover:text-onyx transition-colors duration-300 uppercase tracking-widest"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#services"
+        class="px-7 py-3 bg-onyx text-offwhite text-sm font-semibold rounded-full text-center hover:bg-onyx/80 transition-colors duration-300"
+      >
+        Book Now
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerTop = document.getElementById('hamburger-top');
+  const hamburgerMid = document.getElementById('hamburger-mid');
+  const hamburgerBot = document.getElementById('hamburger-bot');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  let isOpen = false;
+
+  // Scroll detection
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav.classList.remove('py-6');
+      nav.classList.add('py-4');
+    } else {
+      nav.classList.remove('py-4');
+      nav.classList.add('py-6');
+    }
+  });
+
+  // Mobile menu toggle
+  menuToggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      mobileMenu.classList.remove('max-h-0', 'opacity-0');
+      mobileMenu.classList.add('max-h-96', 'opacity-100');
+      hamburgerTop.classList.add('rotate-45', 'translate-y-2');
+      hamburgerMid.classList.add('opacity-0');
+      hamburgerBot.classList.add('-rotate-45', '-translate-y-2');
+    } else {
+      mobileMenu.classList.add('max-h-0', 'opacity-0');
+      mobileMenu.classList.remove('max-h-96', 'opacity-100');
+      hamburgerTop.classList.remove('rotate-45', 'translate-y-2');
+      hamburgerMid.classList.remove('opacity-0');
+      hamburgerBot.classList.remove('-rotate-45', '-translate-y-2');
+    }
+  });
+
+  // Close menu when clicking a link
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      mobileMenu.classList.add('max-h-0', 'opacity-0');
+      mobileMenu.classList.remove('max-h-96', 'opacity-100');
+      hamburgerTop.classList.remove('rotate-45', 'translate-y-2');
+      hamburgerMid.classList.remove('opacity-0');
+      hamburgerBot.classList.remove('-rotate-45', '-translate-y-2');
+    });
+  });
+</script>

@@ -1,0 +1,18 @@
+export const GALLERY_ITEMS = [
+  { src: '/assets/pet-1.webp', name: 'Charlie', breed: 'Golden Retriever', category: 'Dogs' },
+  { src: '/assets/pet-2.webp', name: 'Luna', breed: 'Persian Cat', category: 'Cats' },
+  { src: '/assets/pet-3.webp', name: 'Milo', breed: 'French Bulldog', category: 'Dogs' },
+  { src: '/assets/pet-4.webp', name: 'Cleo', breed: 'Siamese Cat', category: 'Cats' },
+  { src: '/assets/pet-5.webp', name: 'Buddy', breed: 'Labrador Retriever', category: 'Dogs' },
+  { src: '/assets/pet-6.webp', name: 'Misty', breed: 'British Shorthair', category: 'Cats' },
+  { src: '/assets/pet-7.webp', name: 'Cooper', breed: 'Corgi', category: 'Dogs' },
+  { src: '/assets/pet-8.webp', name: 'Shadow', breed: 'Maine Coon', category: 'Cats' },
+  { src: '/assets/pet-9.webp', name: 'Rocky', breed: 'Beagle', category: 'Dogs' },
+  { src: '/assets/pet-10.webp', name: 'Bella', breed: 'Ragdoll', category: 'Cats' },
+  { src: '/assets/pet-11.webp', name: 'Hachi', breed: 'Shiba Inu', category: 'Dogs' },
+  { src: '/assets/pet-12.webp', name: 'Nala', breed: 'Scottish Fold', category: 'Cats' },
+  { src: '/assets/pet-13.webp', name: 'Rex', breed: 'German Shepherd', category: 'Dogs' },
+  { src: '/assets/pet-14.webp', name: 'Tiger', breed: 'Bengal Cat', category: 'Cats' },
+  { src: '/assets/pet-15.webp', name: 'Frost', breed: 'Samoyed', category: 'Dogs' },
+  { src: '/assets/pet-16.webp', name: 'Mochi', breed: 'Munchkin', category: 'Cats' },
+];
