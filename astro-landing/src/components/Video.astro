@@ -47,15 +47,14 @@
           </div>
         </button>
 
-        <!-- YouTube iframe (hidden until play) -->
-        <iframe
+        <!-- Video element (hidden until play) -->
+        <video
           id="video-iframe"
           title="PawCare Virtual Tour"
-          class="absolute inset-0 w-full h-full hidden"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+          class="absolute inset-0 w-full h-full object-cover hidden"
+          controls
+          controlsList="nodownload"
+        ></video>
       </div>
     </div>
   </div>
@@ -68,9 +67,10 @@
 
     if (playBtn && iframe) {
       playBtn.addEventListener("click", function () {
-        iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+        iframe.src = "/assets/video-embed/video-tour.mp4";
         iframe.classList.remove("hidden");
         playBtn.classList.add("hidden");
+        iframe.play();
       });
     }
   });
