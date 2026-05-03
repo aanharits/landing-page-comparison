@@ -26,7 +26,7 @@ function Video() {
               </button>
             )}
             {playing && (
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="PawCare Virtual Tour" className="absolute inset-0 w-full h-full" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+              <video src="/assets/video-embed/video-tour.mp4" title="PawCare Virtual Tour" className="absolute inset-0 w-full h-full object-cover" autoPlay controls controlsList="nodownload"></video>
             )}
           </div>
         </div>
