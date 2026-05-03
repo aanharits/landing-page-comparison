@@ -16,7 +16,7 @@ function Video() {
           <div className="relative w-full rounded-3xl overflow-hidden bg-text/50 shadow-2xl" style={{ paddingBottom: '56.25%' }}>
             {!playing && (
               <button onClick={() => setPlaying(true)} className="absolute inset-0 w-full h-full cursor-pointer group z-10">
-                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=80" alt="PawCare Facility Tour" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+                <img src="/assets/video-thumbnail.png" alt="PawCare Facility Tour" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-text/40 group-hover:bg-text/30 transition-colors duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="video-play-btn w-24 h-24 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-2xl">
