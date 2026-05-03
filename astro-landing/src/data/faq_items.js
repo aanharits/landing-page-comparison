@@ -12,7 +12,7 @@ export const FAQ_ITEMS = [
   {
     question: 'What vaccinations does my pet need?',
     answer:
-      'Core vaccinations vary by species. Dogs typically need rabies, distemper, parvovirus, and adenovirus vaccines. Cats need rabies, feline calicivirus, rhinotracheitis, and panleukopenia. We create personalized vaccination schedules based on your pet\'s age, lifestyle, and risk factors.',
+      "Core vaccinations vary by species. Dogs typically need rabies, distemper, parvovirus, and adenovirus vaccines. Cats need rabies, feline calicivirus, rhinotracheitis, and panleukopenia. We create personalized vaccination schedules based on your pet's age, lifestyle, and risk factors.",
   },
   {
     question: 'How do I prepare my pet for surgery?',
@@ -27,6 +27,16 @@ export const FAQ_ITEMS = [
   {
     question: 'Do you provide pet nutrition counseling?',
     answer:
-      'Absolutely! Our certified pet nutritionists create custom diet plans based on your pet\'s breed, age, weight, activity level, and any medical conditions. We also carry a curated selection of premium pet food brands.',
+      "Absolutely! Our certified pet nutritionists create custom diet plans based on your pet's breed, age, weight, activity level, and any medical conditions. We also carry a curated selection of premium pet food brands.",
+  },
+  {
+    question: 'What payment methods do you accept?',
+    answer:
+      'We accept all major credit and debit cards, cash, and digital payments. We also offer flexible payment plans for larger procedures and partner with several pet insurance providers for seamless claim processing.',
+  },
+  {
+    question: 'Can I stay with my pet during examinations?',
+    answer:
+      'Yes, pet owners are welcome to stay during routine examinations and consultations. For certain procedures like surgery or X-rays, we ask owners to wait in our comfortable lounge area where our team will keep you updated throughout the process.',
   },
 ];

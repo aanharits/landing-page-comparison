@@ -6,22 +6,25 @@ import { GALLERY_FILTERS } from '../data/gallery_filters.js';
 <section id="gallery" class="py-24 lg:py-32 bg-white">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="mb-12 animate-on-scroll fade-up">
-      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-sagedark mb-4">
+    <div class="text-center mb-12 animate-on-scroll fade-up">
+      <p class="text-sm font-accent font-semibold uppercase tracking-[0.3em] text-primary mb-4">
         OUR FRIENDS
       </p>
-      <h2 class="text-4xl lg:text-5xl font-extrabold text-onyx mb-8">
+      <h2 class="text-4xl lg:text-5xl font-heading font-bold text-text mb-6">
         Pet Gallery
       </h2>
+      <p class="text-text-light max-w-2xl mx-auto mb-8">
+        Meet some of the adorable pets we've had the pleasure of caring for at PawCare.
+      </p>
 
       <!-- Filter Buttons -->
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap justify-center gap-3">
         {GALLERY_FILTERS.map((filter) => (
           <button
             class={`gallery-filter-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
               filter === 'All'
-                ? 'bg-onyx text-offwhite'
-                : 'bg-onyx/5 text-onyx/60 hover:bg-onyx/10'
+                ? 'bg-primary text-white'
+                : 'bg-gray-100 text-text-light hover:bg-gray-200'
             }`}
             data-filter={filter}
           >
@@ -32,26 +35,28 @@ import { GALLERY_FILTERS } from '../data/gallery_filters.js';
     </div>
 
     <!-- Gallery Grid -->
-    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
       {GALLERY_ITEMS.map((item, index) => (
         <div
-          class="gallery-item group rounded-4xl overflow-hidden relative animate-on-scroll zoom-in"
+          class="gallery-item group rounded-2xl overflow-hidden relative cursor-pointer animate-on-scroll zoom-in"
           data-category={item.category}
-          
-          style={`animation-delay: ${index * 80}ms`}
+          data-src={item.src}
+          data-name={item.name}
+          data-breed={item.breed}
+          style={`animation-delay: ${index * 60}ms`}
         >
           <img
             src={item.src}
-            alt={item.name}
-            class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
-            width="320"
-            height="288"
+            alt={`${item.name} - ${item.breed}`}
+            class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+            width="400"
+            height="256"
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-onyx/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          <div class="absolute inset-0 bg-gradient-to-t from-text/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
             <div>
-              <p class="text-white font-bold text-lg">{item.name}</p>
+              <p class="text-white font-heading font-bold text-lg">{item.name}</p>
               <p class="text-white/70 text-sm">{item.breed}</p>
             </div>
           </div>
@@ -59,9 +64,20 @@ import { GALLERY_FILTERS } from '../data/gallery_filters.js';
       ))}
     </div>
   </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-white text-4xl hover:text-accent transition-colors z-10" aria-label="Close lightbox">&times;</button>
+    <div class="text-center">
+      <img id="lightbox-img" src="" alt="" class="rounded-2xl" />
+      <p id="lightbox-name" class="text-white font-heading font-bold text-xl mt-4"></p>
+      <p id="lightbox-breed" class="text-white/60 text-sm"></p>
+    </div>
+  </div>
 </section>
 
 <script>
+  // Gallery Filter
   const filterButtons = document.querySelectorAll('.gallery-filter-btn');
   const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -69,15 +85,13 @@ import { GALLERY_FILTERS } from '../data/gallery_filters.js';
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
 
-      // Update active button styles
       filterButtons.forEach(b => {
-        b.classList.remove('bg-onyx', 'text-offwhite');
-        b.classList.add('bg-onyx/5', 'text-onyx/60', 'hover:bg-onyx/10');
+        b.classList.remove('bg-primary', 'text-white');
+        b.classList.add('bg-gray-100', 'text-text-light');
       });
-      btn.classList.add('bg-onyx', 'text-offwhite');
-      btn.classList.remove('bg-onyx/5', 'text-onyx/60', 'hover:bg-onyx/10');
+      btn.classList.add('bg-primary', 'text-white');
+      btn.classList.remove('bg-gray-100', 'text-text-light');
 
-      // Filter gallery items
       galleryItems.forEach(item => {
         if (filter === 'All' || item.dataset.category === filter) {
           item.style.display = '';
@@ -88,5 +102,37 @@ import { GALLERY_FILTERS } from '../data/gallery_filters.js';
         }
       });
     });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxName = document.getElementById('lightbox-name');
+  const lightboxBreed = document.getElementById('lightbox-breed');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (lightboxImg && lightboxName && lightboxBreed && lightbox) {
+        lightboxImg.src = item.dataset.src || '';
+        lightboxImg.alt = item.dataset.name || '';
+        lightboxName.textContent = item.dataset.name || '';
+        lightboxBreed.textContent = item.dataset.breed || '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  lightboxClose?.addEventListener('click', () => {
+    lightbox?.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   });
 </script>

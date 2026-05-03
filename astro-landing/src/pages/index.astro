@@ -2,10 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
-import Stats from "../components/Stats.astro";
 import Services from "../components/Services.astro";
 import Gallery from "../components/Gallery.astro";
+import Video from "../components/Video.astro";
+import Team from "../components/Team.astro";
 import Testimonials from "../components/Testimonials.astro";
+import Stats from "../components/Stats.astro";
 import VirtualTour from "../components/VirtualTour.astro";
 import LocationMap from "../components/LocationMap.astro";
 import FAQ from "../components/FAQ.astro";
@@ -13,18 +15,18 @@ import Footer from "../components/Footer.astro";
 ---
 
 <Layout>
-  <div class="min-h-screen bg-offwhite">
-    <Navbar />
-    <main>
-      <Hero />
-      <Stats />
-      <Services />
-      <Gallery />
-      <Testimonials />
-      <VirtualTour />
-      <LocationMap />
-      <FAQ />
-    </main>
-    <Footer />
-  </div>
+  <Navbar />
+  <main>
+    <Hero />
+    <Services />
+    <Gallery />
+    <Video />
+    <Team />
+    <Testimonials />
+    <Stats />
+    <VirtualTour />
+    <LocationMap />
+    <FAQ />
+  </main>
+  <Footer />
 </Layout>

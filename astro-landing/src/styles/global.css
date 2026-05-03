@@ -2,24 +2,263 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Smooth scrolling ===== */
+/* ===== Global Reset & Smooth Scrolling ===== */
 html {
   scroll-behavior: smooth;
 }
 
-/* ===== Custom scrollbar ===== */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #FAFAFA;
+  color: #1A1A2E;
+}
+
+/* ===== Custom Scrollbar ===== */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #faf9f6;
+  background: #FAFAFA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #829281;
+  background: #74C69D;
   border-radius: 4px;
 }
+::-webkit-scrollbar-thumb:hover {
+  background: #2D6A4F;
+}
 
-/* ===== FAQ Accordion transitions ===== */
+/* ===== Glassmorphism Navbar ===== */
+.glass-nav {
+  background: rgba(250, 250, 250, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(45, 106, 79, 0.08);
+}
+
+/* ===== CTA Button Pulse Animation ===== */
+@keyframes ctaPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(45, 106, 79, 0);
+  }
+}
+
+.cta-pulse {
+  animation: ctaPulse 2s ease-in-out infinite;
+}
+
+@keyframes ctaShine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.cta-shine {
+  background: linear-gradient(
+    90deg,
+    #2D6A4F 0%,
+    #74C69D 25%,
+    #2D6A4F 50%,
+    #74C69D 75%,
+    #2D6A4F 100%
+  );
+  background-size: 200% auto;
+  animation: ctaShine 3s linear infinite;
+}
+
+/* ===== Scroll Animations (CSS Keyframes Only) ===== */
+.animate-on-scroll {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* fadeInUp */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.is-visible.fade-up {
+  animation-name: fadeInUp;
+}
+
+/* fadeInRight */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.is-visible.fade-right {
+  animation-name: fadeInRight;
+}
+
+/* fadeInLeft */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.is-visible.fade-left {
+  animation-name: fadeInLeft;
+}
+
+/* fadeInScale / zoomIn */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.is-visible.zoom-in {
+  animation-name: fadeInScale;
+}
+
+/* ===== Service Card Hover ===== */
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.12);
+}
+
+/* ===== Gallery Transitions ===== */
+.gallery-item {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.gallery-item.hidden-item {
+  opacity: 0;
+  transform: scale(0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* ===== Lightbox ===== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* ===== Testimonials Auto-Sliding Carousel ===== */
+@keyframes testimonialSlide {
+  0% { transform: translateX(0); }
+  14% { transform: translateX(0); }
+  16.67% { transform: translateX(-100%); }
+  30.67% { transform: translateX(-100%); }
+  33.33% { transform: translateX(-200%); }
+  47.33% { transform: translateX(-200%); }
+  50% { transform: translateX(-300%); }
+  64% { transform: translateX(-300%); }
+  66.67% { transform: translateX(-400%); }
+  80.67% { transform: translateX(-400%); }
+  83.33% { transform: translateX(-500%); }
+  97.33% { transform: translateX(-500%); }
+  100% { transform: translateX(0); }
+}
+
+.testimonial-track {
+  display: flex;
+  animation: testimonialSlide 18s ease-in-out infinite;
+}
+
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
+.testimonial-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .testimonial-slide {
+    min-width: 50%;
+  }
+  @keyframes testimonialSlide {
+    0% { transform: translateX(0); }
+    14% { transform: translateX(0); }
+    16.67% { transform: translateX(-50%); }
+    30.67% { transform: translateX(-50%); }
+    33.33% { transform: translateX(-100%); }
+    47.33% { transform: translateX(-100%); }
+    50% { transform: translateX(-150%); }
+    64% { transform: translateX(-150%); }
+    66.67% { transform: translateX(-200%); }
+    80.67% { transform: translateX(-200%); }
+    83.33% { transform: translateX(0); }
+    100% { transform: translateX(0); }
+  }
+}
+
+/* ===== Stats / Counter Section ===== */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-animate {
+  animation: countUp 0.8s ease-out forwards;
+}
+
+/* ===== FAQ Accordion ===== */
 .faq-content {
   max-height: 0;
   overflow: hidden;
@@ -35,104 +274,26 @@ html {
   transform: rotate(45deg);
 }
 
-/* ===== Gallery filter transitions ===== */
-.gallery-item {
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
+/* ===== Team Card ===== */
+.team-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.gallery-item.hidden-item {
-  opacity: 0;
-  transform: scale(0.8);
-  position: absolute;
-  pointer-events: none;
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(45, 106, 79, 0.12);
 }
 
-/* ===== Glassmorphism Navbar ===== */
-.glass-nav {
-  background: rgba(250, 249, 246, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
-}
-
-/* ===== Service card hover ===== */
-.service-card {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(26, 26, 26, 0.08);
-}
-
-/* ===== Custom Scroll Animations ===== */
-.animate-on-scroll {
-  opacity: 0;
-  animation-fill-mode: forwards;
-  animation-duration: 0.8s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.is-visible.fade-up {
-  animation-name: fadeUpKeyframes;
-}
-
-.is-visible.fade-right {
-  animation-name: fadeRightKeyframes;
-}
-
-.is-visible.fade-left {
-  animation-name: fadeLeftKeyframes;
-}
-
-.is-visible.zoom-in {
-  animation-name: zoomInKeyframes;
-}
-
-@keyframes fadeUpKeyframes {
-  from {
-    opacity: 0;
-    transform: translateY(80px);
+/* ===== Video Play Button ===== */
+@keyframes videoPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    box-shadow: 0 0 0 16px rgba(255, 255, 255, 0);
   }
 }
-
-@keyframes fadeRightKeyframes {
-  from {
-    opacity: 0;
-    transform: translateX(-80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeLeftKeyframes {
-  from {
-    opacity: 0;
-    transform: translateX(80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes zoomInKeyframes {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.video-play-btn {
+  animation: videoPulse 2s ease-in-out infinite;
 }
 
 /* ===== Float Particle Animation ===== */
@@ -153,4 +314,68 @@ html {
     transform: translateY(-10px) translateX(12px);
     opacity: 0.7;
   }
+}
+
+/* ===== Hero Text Animation ===== */
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-animate {
+  animation: heroFadeInUp 0.8s ease-out forwards;
+}
+.hero-animate-delay-1 {
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease-out 0.2s forwards;
+}
+.hero-animate-delay-2 {
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease-out 0.4s forwards;
+}
+.hero-animate-delay-3 {
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+/* ===== Navbar Shrink ===== */
+.nav-shrink {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Virtual Tour Active Thumbnail ===== */
+.tour-thumb {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.tour-thumb:hover {
+  transform: scale(1.03);
+}
+.tour-thumb.active {
+  border-color: #2D6A4F;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.3);
+}
+
+/* ===== Contact Form ===== */
+.form-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-input:focus {
+  border-color: #2D6A4F;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+  outline: none;
+}
+
+/* ===== Newsletter ===== */
+.newsletter-input:focus {
+  border-color: #74C69D;
+  box-shadow: 0 0 0 3px rgba(116, 198, 157, 0.2);
+  outline: none;
 }

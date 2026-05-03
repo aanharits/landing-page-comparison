@@ -10,7 +10,7 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="PawCare — Premium Pet Care & Clinic. Where every pet gets the royal treatment."
+      content="PawCare — Premium Pet Care & Clinic. Trusted veterinary services with 10K+ pets served, 50+ expert vets, and 15 years of excellence."
     />
     <title>PawCare — Premium Pet Care & Clinic</title>
 
@@ -18,35 +18,18 @@ import "../styles/global.css";
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Preload LCP hero image -->
+    <!-- Google Fonts: Playfair Display, Inter, Poppins (render-blocking for research) -->
     <link
-      rel="preload"
-      as="image"
-      href="/assets/hero.webp"
-      fetchpriority="high"
-    />
-
-    <!-- Load Google Fonts non-render-blocking via media swap trick -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
     />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
-
-
   </head>
-  <body class="bg-offwhite text-onyx font-sans antialiased">
+  <body class="bg-background text-text font-body antialiased">
     <slot />
 
     <script is:inline>
       document.addEventListener("DOMContentLoaded", function () {
+        // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -59,6 +42,18 @@ import "../styles/global.css";
         document.querySelectorAll('.animate-on-scroll').forEach((el) => {
           observer.observe(el);
         });
+
+        // Navbar shrink on scroll
+        const nav = document.getElementById('main-nav');
+        if (nav) {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+              nav.classList.add('nav-shrink');
+            } else {
+              nav.classList.remove('nav-shrink');
+            }
+          });
+        }
       });
     </script>
   </body>

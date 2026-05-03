@@ -1,0 +1,77 @@
+---
+// Video Section - YouTube Embed with thumbnail preview
+---
+
+<section id="video" class="py-24 lg:py-32 bg-primary-dark">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-12 animate-on-scroll fade-up">
+      <p class="text-sm font-accent font-semibold uppercase tracking-[0.3em] text-secondary mb-4">
+        WATCH & DISCOVER
+      </p>
+      <h2 class="text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
+        Tur Virtual Fasilitas Kami
+      </h2>
+      <p class="text-white/60 max-w-2xl mx-auto">
+        Take a peek inside our world-class facility and see why thousands of pet owners trust PawCare with their beloved companions.
+      </p>
+    </div>
+
+    <!-- Video Player -->
+    <div class="animate-on-scroll fade-up max-w-4xl mx-auto">
+      <div
+        id="video-container"
+        class="relative w-full rounded-3xl overflow-hidden bg-text/50 shadow-2xl"
+        style="padding-bottom: 56.25%"
+      >
+        <!-- Thumbnail overlay -->
+        <button
+          id="video-play-btn"
+          class="absolute inset-0 w-full h-full cursor-pointer group z-10"
+          aria-label="Play video tour"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1280&q=80"
+            alt="PawCare Facility Tour Video Thumbnail"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-text/40 group-hover:bg-text/30 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="video-play-btn w-24 h-24 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-2xl">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2D6A4F" class="w-10 h-10 ml-1">
+                <polygon points="5,3 19,12 5,21" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <!-- YouTube iframe (hidden until play) -->
+        <iframe
+          id="video-iframe"
+          title="PawCare Virtual Tour"
+          class="absolute inset-0 w-full h-full hidden"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    const playBtn = document.getElementById("video-play-btn");
+    const iframe = document.getElementById("video-iframe");
+
+    if (playBtn && iframe) {
+      playBtn.addEventListener("click", function () {
+        iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+        iframe.classList.remove("hidden");
+        playBtn.classList.add("hidden");
+      });
+    }
+  });
+</script>
